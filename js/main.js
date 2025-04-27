@@ -11,6 +11,25 @@ document.addEventListener('DOMContentLoaded', function() {
         contactBar.innerHTML += contactBarContent;
     }
 
+    // Menu toggle functionality
+    const menuButton = document.querySelector('.dropdownButton');
+    const sideMenu = document.getElementById('sideMenu');
+    
+    if (menuButton && sideMenu) {
+        menuButton.addEventListener('click', () => {
+            menuButton.classList.toggle('active');
+            sideMenu.classList.toggle('active');
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!sideMenu.contains(e.target) && !menuButton.contains(e.target)) {
+                menuButton.classList.remove('active');
+                sideMenu.classList.remove('active');
+            }
+        });
+    }
+
     // Function to check if element is in viewport
     function isInViewport(element) {
         const rect = element.getBoundingClientRect();
